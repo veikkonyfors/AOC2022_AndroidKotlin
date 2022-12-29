@@ -12,6 +12,7 @@ class Hill constructor(val hillHeigths:List<String> ) {
     var cost: Array<Array<Int>> = Array(hillHeigths.size) { Array(hillHeigths[0].length) { -1 } }
     var carryOn: Boolean = true
     var updated:Array<Array<Boolean>> = Array(hillHeigths.size) { Array(hillHeigths[0].length) { false } }
+    var pathCost:Int=0
 
     init {
         findStartAndEnd()
@@ -28,9 +29,10 @@ class Hill constructor(val hillHeigths:List<String> ) {
                     if (col == 'E') { // Just a check
                         println("Found E")
                     }
-                    if (col == 'S') { // Just a check
+                    if (col == 'S') {
                         println("Found S")
                         println(cost[i][j])
+                        pathCost=cost[i][j]
                     }
                     // Check up, right, down and left slots. If they are down one at most, update cost to be this slot + 1.
                     update_costs(i, j)

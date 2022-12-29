@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import fi.viware.day12hillclimbing.databinding.FragmentFirstBinding
+import java.io.File
+import java.util.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -34,6 +37,37 @@ class FirstFragment : Fragment() {
 
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+
+        binding.button1stSolution.setOnClickListener {
+            val snackbar=Snackbar.make(view, "Solution for first puzzle day12 will be called", Snackbar.LENGTH_LONG)
+                .setAction("1stPuzzle") {
+
+                    lateinit var hillHeight: List<String>
+                    lateinit var hill:Hill
+
+                    val file = File(
+                        activity?.applicationContext?.filesDir ,
+                        "input"
+                    )
+                    hillHeight = file.readLines()
+                    hill = Hill(hillHeight)
+
+                    println(hill.cost)
+                    println(hill.hillHeigths)
+                    while(hill.carryOn){
+                        hill.iterate()
+                    }
+
+                    hill.cost.forEach { println(Arrays.deepToString(it)) }
+                    hill.hillHeigths.forEach { println(it) }
+
+                    binding.textviewFirst.setText(hill.pathCost.toString())
+                }
+
+            snackbar.show()
+
+
         }
     }
 
