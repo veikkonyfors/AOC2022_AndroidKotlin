@@ -12,7 +12,8 @@ class Hill constructor(val hillHeigths:List<String> ) {
     var cost: Array<Array<Int>> = Array(hillHeigths.size) { Array(hillHeigths[0].length) { -1 } }
     var carryOn: Boolean = true
     var updated:Array<Array<Boolean>> = Array(hillHeigths.size) { Array(hillHeigths[0].length) { false } }
-    var pathCost:Int=0
+    var pathCost:Int=0 // Cost from E to S
+    var aCost:MutableList<Int> = mutableListOf() // List to hold costs for each a found
 
     init {
         findStartAndEnd()
@@ -21,6 +22,10 @@ class Hill constructor(val hillHeigths:List<String> ) {
         cost[endRow][endCol] = 0
     }
 
+    /**
+     * iterate solves the first puzzle.
+     * I.e. finds the shortest path from E to S
+     */
     fun iterate() {
         carryOn=false
         hillHeigths.forEachIndexed { i, row ->
@@ -32,13 +37,27 @@ class Hill constructor(val hillHeigths:List<String> ) {
                     if (col == 'S') {
                         println("Found S")
                         println(cost[i][j])
-                        pathCost=cost[i][j]
+                        pathCost=cost[i][j] // Eventually when we reach S for the first time, it's the shortest path
                     }
                     // Check up, right, down and left slots. If they are down one at most, update cost to be this slot + 1.
                     update_costs(i, j)
                 }
             }
         }
+    }
+
+    fun solve2ndPuzzle():Int {
+
+        hillHeigths.forEachIndexed { i, row ->
+            row.forEachIndexed() { j, col ->
+                if(col=='a' && cost[i][j]!=-1) {
+                    aCost.add(cost[i][j])
+                }
+            }
+        }
+
+        aCost.sort()
+        return aCost[0]
     }
 
     fun update_costs(_row:Int, _col:Int){

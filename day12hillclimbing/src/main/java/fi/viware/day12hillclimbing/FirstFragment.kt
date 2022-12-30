@@ -35,7 +35,7 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
+        binding.buttonTo2ndPuzz.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
@@ -62,7 +62,7 @@ class FirstFragment : Fragment() {
                     hill.cost.forEach { println(Arrays.deepToString(it)) }
                     hill.hillHeigths.forEach { println(it) }
 
-                    binding.textviewFirst.setText(hill.pathCost.toString())
+                    binding.firstAnswer.setText(hill.pathCost.toString())
                 }
 
             snackbar.show()

@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import fi.viware.day12hillclimbing.databinding.FragmentSecondBinding
+import java.io.File
+import java.util.*
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -32,8 +34,31 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
+        binding.buttonTo1stPuzzle.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        }
+
+        binding.button2ndSolution.setOnClickListener {
+            lateinit var hillHeight: List<String>
+            lateinit var hill:Hill
+
+            val file = File(
+                activity?.applicationContext?.filesDir ,
+                "input"
+            )
+            hillHeight = file.readLines()
+            hill = Hill(hillHeight)
+
+            println(hill.cost)
+            println(hill.hillHeigths)
+            while(hill.carryOn){
+                hill.iterate()
+            }
+
+            hill.cost.forEach { println(Arrays.deepToString(it)) }
+            hill.hillHeigths.forEach { println(it) }
+
+            binding.secondAnswer.setText(hill.solve2ndPuzzle().toString())
         }
     }
 

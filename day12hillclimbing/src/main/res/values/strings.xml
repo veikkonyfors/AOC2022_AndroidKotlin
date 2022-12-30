@@ -2,11 +2,12 @@
     <string name="app_name">day12hillclimbing</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="first_fragment_label">First Puzzle</string>
+    <string name="second_fragment_label">Second Puzzle</string>
+    <string name="to_second_puzzle">To2ndPuzz</string>
+    <string name="to_first_puzzle">To1stPuzz</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="answer">Answer</string>
+    <string name="solve">Solve</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

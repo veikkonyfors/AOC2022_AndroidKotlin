@@ -41,8 +41,26 @@ class PathTest {
         hill.hillHeigths.forEach { println(it) }
 
 
-        assertEquals(hillHeight[0][0],'S')
-        assertEquals(hillHeight[2][5],'E')
+        assertEquals(hill.pathCost,520)
+    }
+
+    @Test
+    fun solve2ndPuzzle() {
+
+        println(hill.cost)
+        println(hill.hillHeigths)
+        while(hill.carryOn){
+            hill.iterate()
+        }
+
+        hill.solve2ndPuzzle()
+        println(hill.solve2ndPuzzle())
+
+        hill.cost.forEach { println(Arrays.deepToString(it)) }
+        hill.hillHeigths.forEach { println(it) }
+
+
+        assertEquals(hill.solve2ndPuzzle(),508)
     }
 
     @Test
