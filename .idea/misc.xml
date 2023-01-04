@@ -7,6 +7,9 @@
         <entry key="day12hillclimbing/src/main/res/layout/content_hill_climbing.xml" value="0.1" />
         <entry key="day12hillclimbing/src/main/res/layout/fragment_first.xml" value="0.18177083333333333" />
         <entry key="day12hillclimbing/src/main/res/layout/fragment_second.xml" value="0.1" />
+        <entry key="day13distresssignal/src/main/res/layout/activity_distress_signal.xml" value="0.25" />
+        <entry key="day13distresssignal/src/main/res/layout/fragment_dashboard.xml" value="0.18" />
+        <entry key="day13distresssignal/src/main/res/layout/fragment_home.xml" value="0.16077898550724637" />
       </map>
     </option>
   </component>

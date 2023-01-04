@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "AOC2022_AndroidKotlin"
 include ':app'
 include ':day12hillclimbing'
+include ':day13distresssignal'

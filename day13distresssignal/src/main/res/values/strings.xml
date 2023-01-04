@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Day13DistressSignal</string>
+    <string name="title_home">DistressSignalHandler</string>
+    <string name="title_dashboard">Puzzle1</string>
+    <string name="title_notifications">Puzzle2</string>
+    <string name="label_solve_button">Solve</string>
+</resources>
