@@ -23,7 +23,7 @@ class DistressSignalHandlerTest {
 
     @Test
     fun testCompareSignals(){
-        val rightOrder:List<Boolean> =listOf(true,true,false,true,false,true,false,false)
+        //val rightOrder:List<Boolean> =listOf(true,true,false,true,false,true,false,false)
         distressSignalHandler.compare()
 
         println("Sum: ${distressSignalHandler.countSumValidSignalIndexes()}")
