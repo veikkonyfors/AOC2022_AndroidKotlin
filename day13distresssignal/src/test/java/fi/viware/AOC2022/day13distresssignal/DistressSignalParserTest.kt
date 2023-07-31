@@ -18,14 +18,14 @@ class DistressSignalParserTest {
 
     @Test
     fun testParse(){
-        var parser = DistressSignalParser("[[1],2,3]")
+        var parser = DistressSignalParserNoNo("[[1],2,3]")
         var list:List<Any> = parser.parse(parser.listLine.toMutableList())
         println(list)
 
-        DistressSignalParser("[1,1,3,1,1]").parse().also { it -> println(it)}
+        DistressSignalParserNoNo("[1,1,3,1,1]").parse().also { it -> println(it)}
 
-        DistressSignalParser("[[1],[2,3,4]]").parse().also { it -> println(it)}
+        DistressSignalParserNoNo("[[1],[2,3,4]]").parse().also { it -> println(it)}
 
-        DistressSignalParser("[[1],4]").parse().also { it -> println(it)}
+        DistressSignalParserNoNo("[[1],4]").parse().also { it -> println(it)}
     }
 }

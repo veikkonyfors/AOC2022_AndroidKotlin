@@ -1,6 +1,8 @@
 package fi.viware.AOC2022.day13distresssignal
 
-class DistressSignalParser(var listLine:String) {
+
+// This is not working. Used listOf approach in handler instead
+class DistressSignalParserNoNo(var listLine:String) {
     var listSignal:MutableList<Any> = mutableListOf()
 
     init {

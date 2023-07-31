@@ -1,10 +1,12 @@
 plugins {
+    id 'org.jetbrains.dokka' version '1.8.10'
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
     compileSdk 32
+    compileSdkPreview "UpsideDownCake" // 20230602, VN: Started to fail without. This was recommended in the error msg
 
     defaultConfig {
         applicationId "fi.viware.AOC2022.day13distresssignal"
@@ -46,7 +48,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.4.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+    implementation 'androidx.core:core-ktx:+'
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'junit:junit:4.12'
     testImplementation 'junit:junit:4.12'
     testImplementation 'junit:junit:4.12'
     testImplementation 'junit:junit:4.12'

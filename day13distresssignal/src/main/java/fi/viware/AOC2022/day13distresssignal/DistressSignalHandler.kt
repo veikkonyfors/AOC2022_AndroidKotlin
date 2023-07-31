@@ -1,14 +1,18 @@
 package fi.viware.AOC2022.day13distresssignal
 
+/**
+ * Day13 Puzz1 handler. Signals parsed with listOf's in create signals methods.
+ * Puzz2 makes use of proper parser set up in puzz2/signal class.
+ */
 class DistressSignalHandler() {
     var signals: MutableList<Any> = mutableListOf()
     var signalPairs: MutableList<SignalPair> = mutableListOf()
     var sumValidSignalIndexes=0
 
     init {
-        //create_test_signals()
-        create_signals()
-        create_signals_2()
+        create_test_signals()
+        //create_signals()
+        //create_signals_2()
         for (i in 1..signals.size step 2) {
             signalPairs.add(
                 SignalPair(
