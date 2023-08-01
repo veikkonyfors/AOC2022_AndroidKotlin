@@ -13,11 +13,15 @@ package fi.viware.AOC2022.day13distresssignal.puzz2
  * signalString needs to start with [ and end with ]
  *
  */
-class Signal(val stringSignal: String) {
+class Signal(var stringSignal: String) {
     var listSignal: List<Any> = listOf()
 
     init {
         listSignal = parseStringSignal2ListSignal(stringSignal)
+    }
+
+    // Secondary constructor for instantiating out of a list
+    constructor(list: List<Any>) : this(list.toString()) {
     }
 
 
@@ -151,22 +155,62 @@ class Signal(val stringSignal: String) {
 
     /**
      * Compares this signal to the given other one.
-     * If this signal is lower, returns true, otherwise false.
+     * If this signal is lower or equal, returns true, otherwise false.
+     * Spec didn't actually tell clearly how should equal signals be treated in the first puzzle
+     * i.e. is the pair in right order or not.
+     * It didn't matter in the end, no equal signals existed in input OR implementation for first
+     * puzzle just happened to do it in right way.
+     * For the second puzzle itdoesn't matter either, as equal signals will be adjacent
+     * in sorted order anyway.
      */
-    fun isLower(signal2:Signal):Boolean{
+    fun isLowerOrEqual(signal2:Signal):Boolean{
 
         listSignal.forEachIndexed { index, any ->
-            // If given signal runs out of elements, this signal is higher
-            if (signal2.listSignal.size <= index+1) return false
+
+            // If exactly one value is an integer, convert integer to a list which contains
+            // that integer as its only value, then retry the comparison.
+            // This needs to be checked first, as otherwise signal size will be considered zero
+            // and test for signal2's list running out will fail
+
+            // If this is a list and signal2 parameter is Int: Turn latter into a list and then
+            // compare
+            if (listSignal[index] is MutableList<*> && signal2.listSignal[index] is Int) {
+                val signal2AsList: MutableList<Any> =
+                    mutableListOf(Signal(signal2.listSignal.toString()))
+                val signal2AsListList = Signal(signal2AsList.toString())
+                return isLowerOrEqual(signal2AsListList)
+            }
+
+            // If this is an Int and signal2 parameter is List: Turn former into a list and then
+            // compare
+            if (listSignal[index] is Int && signal2.listSignal[index] is MutableList<*>) {
+                val signalThisAsList: MutableList<Any> =
+                    mutableListOf(Signal(this.listSignal.toString()))
+                val signalThisAsListList = Signal(signalThisAsList.toString())
+                return signalThisAsListList.isLowerOrEqual(signal2)
+            }
+
+            // If parameter signal runs out of elements, this signal is not lower
+            if (signal2.listSignal.size <= index) return false
 
             // If both elements are ints and this signal's one is smaller, this signal is lower
             if (listSignal[index] is Int && signal2.listSignal[index] is Int) {
                 val i: Int = listSignal[index] as Int
                 val j: Int = signal2.listSignal[index] as Int
+                if (i == j) return@forEachIndexed
                 return i < j //listSignal[index] < signal2.listSignal[index]
             }
-        }
 
+            // If both signals have a list element here, compare those as individual Signals
+            if (listSignal[index] is MutableList<*> && signal2.listSignal[index] is MutableList<*>) {
+                // Make a signal of both elements, and compare those
+                val subsignal1 = Signal(listSignal[index].toString())
+                val subSignal2 = Signal(signal2.listSignal[index].toString())
+
+                return subsignal1.isLowerOrEqual(subSignal2)
+
+            }
+        }
         return true
     }
 

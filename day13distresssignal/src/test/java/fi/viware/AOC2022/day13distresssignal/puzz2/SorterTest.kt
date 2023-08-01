@@ -21,8 +21,9 @@ class SorterTest {
             "input_test"
         )
         val signalStringsFromFile = file.readLines()
+        val nonEmptySignalStringsFromFile = signalStringsFromFile.filter { it.isNotEmpty() }
         val dividerPackets = listOf("[[2]]", "[[6]]")
-        signalStrings = signalStringsFromFile + dividerPackets
+        signalStrings = nonEmptySignalStringsFromFile + dividerPackets
         sorter = Sorter(signalStrings)
     }
 

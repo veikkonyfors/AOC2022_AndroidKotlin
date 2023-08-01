@@ -9,7 +9,7 @@ class Sorter(val signalStrings: List<String>) {
             listOfSignals.add(Signal(it))
             sortedListOfSignals = listOfSignals.sortedWith(Comparator { sig1, sig2 ->
                 Int
-                if (sig1.isLower(sig2)) -1 else 1
+                if (sig1.isLowerOrEqual(sig2)) -1 else 1
             })
 
         }
