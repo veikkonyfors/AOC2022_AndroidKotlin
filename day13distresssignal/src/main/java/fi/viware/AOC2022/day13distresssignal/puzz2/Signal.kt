@@ -72,6 +72,9 @@ class Signal(var stringSignal: String) {
      * Parse given signal in String format into a list of integers and lists.
      * Do it recursively. Once a [ bracket is met, locate matching ] bracket and recursively parse
      * that string into a list. This list is then added to the higher level list.
+     *
+     * 21.8.2023, VN: Int can be more that one digit, e.g. [[],[6,10,[8]],[7,[[0,3,8],[7,0],9,[8,3],[2,7]],5,6],[2,[[7],[7,1,8,6]],0]]
+     * Damned.
      */
     fun parseStringSignal2ListSignal(stringSignal: String): List<Any> {
 
@@ -88,10 +91,15 @@ class Signal(var stringSignal: String) {
                 if (i >= trimmedStringSignal.length) break
                 val c = trimmedStringSignal[i]
                 when {
-                    c.isDigit() ->
-                        listSignal.add(c.digitToInt())
+                    c.isDigit() ->{
+                        var intString:String = c.toString()
+                        while( trimmedStringSignal[i+1].isDigit() ) { i++; intString+=trimmedStringSignal[i]}
+                        listSignal.add(intString.toInt())
+                    }
+
                     c == ',' ->
                         continue
+
                     c == '[' -> {
                         val subStringSignal =
                             extractSubSignalString(trimmedStringSignal.drop(i))
@@ -99,6 +107,7 @@ class Signal(var stringSignal: String) {
                         listSignal.add(subListSignal)
                         i += subStringSignal.length-1 // Skip subsignal characters
                     }
+
                     c == ']' -> {
                         // We must never come here, as leading and terminating brackets are removed to start with
                         println("$TAG, Mismatching bracketing :$stringSignal")
@@ -228,6 +237,9 @@ class Signal(var stringSignal: String) {
 
             }
         }
+        // If this Signal ran out of elements and signal2 still has elements to go, like [3] and [3, [4, [5]]],
+        // these are not equal
+        if(listSignal.size<signal2.listSignal.size) return false
         return true
     }
 

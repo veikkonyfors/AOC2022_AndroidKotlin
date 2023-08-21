@@ -25,6 +25,8 @@ class SignalTest {
 
     @Test
     fun testParseStringSignal2ListSignal() {
+        assertEquals("[[], [6, 10, [8]], [7, [[0, 3, 8], [7, 0], 9, [8, 3], [2, 7]], 5, 6], [2, [[7], [7, 1, 8, 6]], 0]]",
+            Signal("[[],[6,10,[8]],[7,[[0,3,8],[7,0],9,[8,3],[2,7]],5,6],[2,[[7],[7,1,8,6]],0]]").listSignal.toString())
         assertEquals("[4, fi.viware.AOC2022.day13distresssignal.puzz2.Signal, Mismatching bracketing :[4],[3]]", Signal("[4],[3]").listSignal.toString())
         assertEquals("[fi.viware.AOC2022.day13distresssignal.puzz2.Signal, Missing surrounding [ and/or ] :3,[4],[3]]", Signal("3,[4],[3]").listSignal.toString())
         assertEquals("[[4], [3]]", Signal("[[4],[3]]").listSignal.toString())
@@ -49,7 +51,11 @@ class SignalTest {
     }
 
     @Test
-    fun testIsLowerOrEqual() {
+    fun testIsLower() {
+        assertEquals(false, Signal("[[],[6,10,[8]],[7,[[0,3,8],[7,0],9,[8,3],[2,7]],5,6],[2,[[7],[7,1,8,6]],0]]")
+            .isLower(Signal("[[],[6,10,[8]],[7,[[0,3,8],[7,0],9,[8,3],[2,7]],5,6],[2,[[7],[7,1,8,6]],0]]")))
+        assertEquals(true, Signal("[[1], [2, 3, 4]]").isLower(Signal("[1, [2, [3, [4, [5, 6, 0]]]], 8, 9]")))
+        assertEquals(false, Signal("[1, [2, [3, [4, [5, 6, 0]]]], 8, 9]").isLower(Signal("[[1], [2, 3, 4]]")))
         assertEquals(false, Signal("[1,1,3,1,1]").isLower(Signal("[]")))
         assertEquals(true, Signal("[]").isLower(Signal("[1,1,3,1,1]")))
         assertEquals(false, Signal("[6]").isLower(Signal("[[5]]")))
@@ -79,5 +85,10 @@ class SignalTest {
         val signal1 = Signal("[[]]")
         println(signal1.isLower(Signal("[]")))*/
 
+    }
+
+    @Test
+    fun testIsEqual() {
+        assertEquals(false, Signal("[2, 3, 4]").isEqual(Signal("[2, [3, [4, [5, 6, 0]]]]")))
     }
 }

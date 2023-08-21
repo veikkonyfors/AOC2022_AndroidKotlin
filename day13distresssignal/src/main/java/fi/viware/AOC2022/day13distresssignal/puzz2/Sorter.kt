@@ -5,7 +5,7 @@ package fi.viware.AOC2022.day13distresssignal.puzz2
  * It sorts this list into order specified by function isLower.
  * Method toString returns original and sorted list as a string.
  */
-class Sorter(val signalStrings: List<String>) {
+class Sorter(private val signalStrings: List<String>) {
     var listOfSignals:MutableList<Signal> = mutableListOf()
     var sortedListOfSignals:List<Signal> = mutableListOf()
 
