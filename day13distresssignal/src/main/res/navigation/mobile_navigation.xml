@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="fi.viware.AOC2022.day13distresssignal.ui.dashboard.Puzz1Fragment"
+        android:name="fi.viware.AOC2022.day13distresssignal.ui.puzz1.Puzz1Fragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_puzz1" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="fi.viware.AOC2022.day13distresssignal.ui.notifications.NotificationsFragment"
+        android:name="fi.viware.AOC2022.day13distresssignal.ui.puzz2.Puzz2Fragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_puzz2" />
 </navigation>

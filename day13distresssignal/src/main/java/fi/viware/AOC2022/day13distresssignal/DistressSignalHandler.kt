@@ -10,9 +10,9 @@ class DistressSignalHandler() {
     var sumValidSignalIndexes=0
 
     init {
-        create_test_signals()
-        //create_signals()
-        //create_signals_2()
+        //create_test_signals()
+        create_signals()
+        create_signals_2()
         for (i in 1..signals.size step 2) {
             signalPairs.add(
                 SignalPair(
@@ -53,6 +53,7 @@ class DistressSignalHandler() {
     }
 
     fun countSumValidSignalIndexes():Int{
+        sumValidSignalIndexes = 0
         signalPairs.forEachIndexed { i, signalPair ->
             if(signalPair.hasRightOrder){
                 sumValidSignalIndexes+=i+1

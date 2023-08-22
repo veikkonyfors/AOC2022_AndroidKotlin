@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.Puzz1Fragment">
+    tools:context=".ui.puzz2.Puzz2Fragment">
 
     <TextView
-        android:id="@+id/text_dashboard"
+        android:id="@+id/txtAnswer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -21,12 +21,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_solve_puzz1"
+        android:id="@+id/btnSolvePuzz2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_solve_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_dashboard" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAnswer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

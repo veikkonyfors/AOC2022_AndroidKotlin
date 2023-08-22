@@ -91,9 +91,13 @@ class Signal(var stringSignal: String) {
                 if (i >= trimmedStringSignal.length) break
                 val c = trimmedStringSignal[i]
                 when {
-                    c.isDigit() ->{
-                        var intString:String = c.toString()
-                        while( trimmedStringSignal[i+1].isDigit() ) { i++; intString+=trimmedStringSignal[i]}
+                    c.isDigit() -> {
+                        var intString: String = c.toString()
+                        while (trimmedStringSignal.length > i + 1) { // Grab all the digits
+                            if (trimmedStringSignal[i + 1].isDigit()) {
+                                i++; intString += trimmedStringSignal[i]
+                            } else break
+                        }
                         listSignal.add(intString.toInt())
                     }
 
@@ -239,7 +243,7 @@ class Signal(var stringSignal: String) {
         }
         // If this Signal ran out of elements and signal2 still has elements to go, like [3] and [3, [4, [5]]],
         // these are not equal
-        if(listSignal.size<signal2.listSignal.size) return false
+        if (listSignal.size < signal2.listSignal.size) return false
         return true
     }
 
@@ -300,7 +304,11 @@ class Signal(var stringSignal: String) {
 
             }
         }
-        return true
+        // If this Signal ran out of elements and signal2 still has elements to go, like in [3] and [3, [4, [5]]],
+        // this is lower
+        if(listSignal.size < signal2.listSignal.size) return true
+        // Otherwise both ran out, i.e. this isn't lower
+        return false
     }
 
     fun getAsListStrings(): List<String> {

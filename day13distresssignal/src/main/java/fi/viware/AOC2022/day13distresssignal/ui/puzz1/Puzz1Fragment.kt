@@ -1,4 +1,4 @@
-package fi.viware.AOC2022.day13distresssignal.ui.dashboard
+package fi.viware.AOC2022.day13distresssignal.ui.puzz1
 
 import android.os.Bundle
 import android.util.Log
@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import fi.viware.AOC2022.day13distresssignal.databinding.FragmentDashboardBinding
+import fi.viware.AOC2022.day13distresssignal.databinding.FragmentPuzz1Binding
 
 class Puzz1Fragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentPuzz1Binding? = null
 
-    lateinit var dashboardViewModel:Puzz1ViewModel
+    lateinit var puzz1ViewModel: Puzz1ViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,14 +25,14 @@ class Puzz1Fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        dashboardViewModel =
+        puzz1ViewModel =
             ViewModelProvider(this).get(Puzz1ViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentPuzz1Binding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        puzz1ViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
@@ -41,12 +41,12 @@ class Puzz1Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dashboardViewModel.distressSignalHandler.compare()
-        dashboardViewModel.distressSignalHandler.countSumValidSignalIndexes()
+        puzz1ViewModel.distressSignalHandler.compare()
+        puzz1ViewModel.distressSignalHandler.countSumValidSignalIndexes()
 
         binding.btnSolvePuzz1.setOnClickListener {
-            Log.i("Puzz1Fragment",dashboardViewModel.distressSignalHandler.sumValidSignalIndexes.toString())
-            binding.textDashboard.setText(dashboardViewModel.distressSignalHandler.sumValidSignalIndexes.toString())
+            Log.i("Puzz1Fragment",puzz1ViewModel.distressSignalHandler.sumValidSignalIndexes.toString())
+            binding.textDashboard.setText(puzz1ViewModel.distressSignalHandler.sumValidSignalIndexes.toString())
         }
     }
 

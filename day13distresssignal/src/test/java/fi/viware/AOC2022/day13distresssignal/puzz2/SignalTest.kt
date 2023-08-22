@@ -52,9 +52,10 @@ class SignalTest {
 
     @Test
     fun testIsLower() {
+        assertEquals(true, Signal("[[1], [2, 3, 4]]").isLower(Signal("[1, [2, [3, [4, [5, 6, 0]]]], 8, 9]")))
+        assertEquals(false, Signal("[8]").isLower(Signal("[8]")))
         assertEquals(false, Signal("[[],[6,10,[8]],[7,[[0,3,8],[7,0],9,[8,3],[2,7]],5,6],[2,[[7],[7,1,8,6]],0]]")
             .isLower(Signal("[[],[6,10,[8]],[7,[[0,3,8],[7,0],9,[8,3],[2,7]],5,6],[2,[[7],[7,1,8,6]],0]]")))
-        assertEquals(true, Signal("[[1], [2, 3, 4]]").isLower(Signal("[1, [2, [3, [4, [5, 6, 0]]]], 8, 9]")))
         assertEquals(false, Signal("[1, [2, [3, [4, [5, 6, 0]]]], 8, 9]").isLower(Signal("[[1], [2, 3, 4]]")))
         assertEquals(false, Signal("[1,1,3,1,1]").isLower(Signal("[]")))
         assertEquals(true, Signal("[]").isLower(Signal("[1,1,3,1,1]")))
