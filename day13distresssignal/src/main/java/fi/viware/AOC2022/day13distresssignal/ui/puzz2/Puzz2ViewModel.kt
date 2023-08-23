@@ -11,26 +11,25 @@ class Puzz2ViewModel() : ViewModel() {
 
     // Pass answer as LiveData.
     // getAnswer will update the answer, which will be reflected
-    // to fragments textView by declaring it to be observed for changes
+    // to fragments textView due by declaring it to be observed for changes
     // in modelview's value.
     private val _answer = MutableLiveData<String>().apply {
         value = "This is Fragment for solving Puzzle2\nAnswer will be presented here."
     }
     val answer: LiveData<String> = _answer
 
-    private val _context = MutableLiveData<Context?>()
+    private lateinit var _context: Context
 
-    fun setContext(context: Context?) {
-        _context.value = context
-        //_context.apply { value = context }
+    fun setContext(context: Context) {
+        _context = context
     }
 
     fun getAnswer(){
 
-        println(_context.value?.filesDir.toString())
+        println(_context.filesDir.toString())
 
         val file = File(
-            _context.value?.filesDir,
+            _context.filesDir,
             "input"
         )
 

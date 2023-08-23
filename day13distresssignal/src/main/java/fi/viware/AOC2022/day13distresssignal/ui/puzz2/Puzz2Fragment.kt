@@ -30,7 +30,7 @@ class Puzz2Fragment : Fragment() {
 
         puzz2ViewModel =
             ViewModelProvider(this).get(Puzz2ViewModel::class.java)
-        puzz2ViewModel.setContext(activity?.applicationContext)
+        puzz2ViewModel.setContext(requireActivity().applicationContext)
 
 
         _binding = FragmentPuzz2Binding.inflate(inflater, container, false)
