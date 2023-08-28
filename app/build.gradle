@@ -29,6 +29,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'fi.viware.aoc2022_androidkotlin'
 }
 
 dependencies {

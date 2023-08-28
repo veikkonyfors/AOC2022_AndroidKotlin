@@ -32,6 +32,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'fi.viware.day12hillclimbing'
 }
 
 dependencies {

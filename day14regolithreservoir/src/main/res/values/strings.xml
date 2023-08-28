@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">day14regolithreservoir</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard">Puzz1</string>
     <string name="title_notifications">Notifications</string>
+    <string name="btnSolveLabel">Solve</string>
 </resources>

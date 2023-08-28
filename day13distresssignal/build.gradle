@@ -34,6 +34,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'fi.viware.AOC2022.day13distresssignal'
 }
 
 dependencies {
