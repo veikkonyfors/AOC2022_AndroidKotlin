@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import fi.viware.day14regolithreservoir.databinding.FragmentPuzz1Binding
 
-private const val TAG = "fi.viware.day14regolithreservoir.ui.puzz1.Puzz1Fragment"
+private const val TAG = "fi.viware.AOC2022.day14regolithreservoir.ui.puzz1.Puzz1Fragment"
+
 class Puzz1Fragment : Fragment() {
 
     private var _binding: FragmentPuzz1Binding? = null
@@ -46,8 +47,8 @@ class Puzz1Fragment : Fragment() {
 
         binding.btnSolve.setOnClickListener {
             puzz1ViewModel.solve()
-            Log.i(TAG,puzz1ViewModel.cave.sandPoints.toString())
-            Log.i(TAG,puzz1ViewModel.cave.sandPoints.size.toString())
+            Log.i(TAG, puzz1ViewModel.cave.sandPoints.toString())
+            Log.i(TAG, puzz1ViewModel.cave.sandPoints.size.toString())
             //binding.textDashboard.setText(puzz1ViewModel.cave.sumValidSignalIndexes.toString())
         }
     }

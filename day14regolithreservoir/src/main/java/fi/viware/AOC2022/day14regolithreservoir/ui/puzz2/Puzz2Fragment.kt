@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-//import fi.viware.AOC2022.day14regolithreservoir.ui.puzz1.TAG
 import fi.viware.day14regolithreservoir.databinding.FragmentPuzz2Binding
 
-private const val TAG = "fi.viware.day14regolithreservoir.ui.puzz1.Puzz1Fragment"
+private const val TAG = "fi.viware.AOC2022.day14regolithreservoir.ui.puzz1.Puzz2Fragment"
 class Puzz2Fragment : Fragment() {
 
     private var _binding: FragmentPuzz2Binding? = null
@@ -47,8 +46,8 @@ class Puzz2Fragment : Fragment() {
 
         binding.btnSolvePuzz2.setOnClickListener {
             puzz2ViewModel.solve()
-            Log.i(TAG,puzz2ViewModel.cave.sandPoints.toString())
-            Log.i(TAG,puzz2ViewModel.cave.sandPoints.size.toString())
+            Log.i(TAG, puzz2ViewModel.cave.sandPoints.toString())
+            Log.i(TAG, puzz2ViewModel.cave.sandPoints.size.toString())
         }
     }
 

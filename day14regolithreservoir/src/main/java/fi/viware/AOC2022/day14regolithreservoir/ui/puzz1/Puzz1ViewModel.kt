@@ -3,7 +3,7 @@ package fi.viware.AOC2022.day14regolithreservoir.ui.puzz1
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import fi.viware.day14regolithreservoir.Cave
+import fi.viware.AOC2022.day14regolithreservoir.Cave
 import java.io.File
 
 class Puzz1ViewModel : ViewModel() {
