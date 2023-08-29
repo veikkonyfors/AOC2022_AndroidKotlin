@@ -1,4 +1,4 @@
-package fi.viware.day14regolithreservoir.ui.puzz1
+package fi.viware.AOC2022.day14regolithreservoir.ui.puzz2
 
 import android.os.Bundle
 import android.util.Log
@@ -8,34 +8,35 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import fi.viware.day14regolithreservoir.databinding.FragmentPuzz1Binding
+//import fi.viware.AOC2022.day14regolithreservoir.ui.puzz1.TAG
+import fi.viware.day14regolithreservoir.databinding.FragmentPuzz2Binding
 
 private const val TAG = "fi.viware.day14regolithreservoir.ui.puzz1.Puzz1Fragment"
-class Puzz1Fragment : Fragment() {
+class Puzz2Fragment : Fragment() {
 
-    private var _binding: FragmentPuzz1Binding? = null
-
-    lateinit var puzz1ViewModel: Puzz1ViewModel
+    private var _binding: FragmentPuzz2Binding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    lateinit var puzz2ViewModel: Puzz2ViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        puzz1ViewModel =
-            ViewModelProvider(this).get(Puzz1ViewModel::class.java)
+        puzz2ViewModel =
+            ViewModelProvider(this).get(Puzz2ViewModel::class.java)
 
-        context?.let { puzz1ViewModel.setContext(it.filesDir) }
+        context?.let { puzz2ViewModel.setContext(it.filesDir) }
 
-        _binding = FragmentPuzz1Binding.inflate(inflater, container, false)
+        _binding = FragmentPuzz2Binding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.txtPuzz1Answer
-        puzz1ViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.txtPuzz2Answer
+        puzz2ViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
@@ -44,11 +45,10 @@ class Puzz1Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnSolve.setOnClickListener {
-            puzz1ViewModel.solve()
-            Log.i(TAG,puzz1ViewModel.cave.sandPoints.toString())
-            Log.i(TAG,puzz1ViewModel.cave.sandPoints.size.toString())
-            //binding.textDashboard.setText(puzz1ViewModel.cave.sumValidSignalIndexes.toString())
+        binding.btnSolvePuzz2.setOnClickListener {
+            puzz2ViewModel.solve()
+            Log.i(TAG,puzz2ViewModel.cave.sandPoints.toString())
+            Log.i(TAG,puzz2ViewModel.cave.sandPoints.size.toString())
         }
     }
 

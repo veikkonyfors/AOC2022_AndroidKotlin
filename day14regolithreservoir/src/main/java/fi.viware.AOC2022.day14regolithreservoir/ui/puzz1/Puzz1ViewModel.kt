@@ -1,4 +1,4 @@
-package fi.viware.day14regolithreservoir.ui.puzz1
+package fi.viware.AOC2022.day14regolithreservoir.ui.puzz1
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

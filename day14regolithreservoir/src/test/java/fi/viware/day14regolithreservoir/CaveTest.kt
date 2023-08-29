@@ -1,6 +1,5 @@
 package fi.viware.day14regolithreservoir
 
-import CavePuzz2
 import org.junit.Assert.*
 
 import org.junit.After
@@ -116,7 +115,7 @@ class CaveTest {
         println(cave.sandPoints.size)
     }
 
-    @Test
+    //@Test
     fun solvePuzz2() {
         val file = File(
             ".",

@@ -1,6 +1,4 @@
-import fi.viware.day14regolithreservoir.Cave
-import fi.viware.day14regolithreservoir.Point
-import fi.viware.day14regolithreservoir.SandGrain
+package fi.viware.day14regolithreservoir
 
 /**
  * Derived class from Cave of puzz1.

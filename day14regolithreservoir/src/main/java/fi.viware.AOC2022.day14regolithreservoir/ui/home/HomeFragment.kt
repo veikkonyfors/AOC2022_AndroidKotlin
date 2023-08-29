@@ -1,4 +1,4 @@
-package fi.viware.day14regolithreservoir.ui.home
+package fi.viware.AOC2022.day14regolithreservoir.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
