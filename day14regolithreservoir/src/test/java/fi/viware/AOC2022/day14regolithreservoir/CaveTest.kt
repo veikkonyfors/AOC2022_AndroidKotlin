@@ -1,4 +1,4 @@
-package fi.viware.day14regolithreservoir
+package fi.viware.AOC2022.day14regolithreservoir
 
 import org.junit.Assert.*
 

@@ -3,8 +3,7 @@ package fi.viware.AOC2022.day14regolithreservoir.ui.puzz2
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import fi.viware.day14regolithreservoir.Cave
-import fi.viware.day14regolithreservoir.CavePuzz2
+import fi.viware.AOC2022.day14regolithreservoir.CavePuzz2
 import java.io.File
 
 class Puzz2ViewModel : ViewModel() {
@@ -21,7 +20,7 @@ class Puzz2ViewModel : ViewModel() {
     fun solve(){
         val file = File(
             filesDir,
-            "input"
+            "input_test"
         )
         pathLines = file.readLines()
         cave = CavePuzz2(pathLines)

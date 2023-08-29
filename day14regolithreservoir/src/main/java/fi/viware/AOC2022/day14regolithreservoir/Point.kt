@@ -1,4 +1,4 @@
-package fi.viware.day14regolithreservoir
+package fi.viware.AOC2022.day14regolithreservoir
 
 class Point(var x: Int, var y: Int) {
 

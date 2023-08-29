@@ -1,4 +1,4 @@
-package fi.viware.day14regolithreservoir
+package fi.viware.AOC2022.day14regolithreservoir
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import fi.viware.day14regolithreservoir.R
 import fi.viware.day14regolithreservoir.databinding.ActivityRegolithReservoirBinding
 
 class RegolithReservoir : AppCompatActivity() {

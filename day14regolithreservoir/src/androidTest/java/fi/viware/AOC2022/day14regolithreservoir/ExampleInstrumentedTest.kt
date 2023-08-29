@@ -1,4 +1,4 @@
-package fi.viware.day14regolithreservoir
+package fi.viware.AOC2022.day14regolithreservoir
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,8 +1,8 @@
-package fi.viware.day14regolithreservoir
+package fi.viware.AOC2022.day14regolithreservoir
 
 import android.util.Log
 
-private const val TAG = "fi.viware.day14regolithreservoir.Path"
+private const val TAG = "fi.viware.AOC2022.day14regolithreservoir.Path"
 
 /**
  * Deals with the path in various ways
@@ -57,3 +57,4 @@ class Path(val points: List<Point>) {
     }
 
 }
+
