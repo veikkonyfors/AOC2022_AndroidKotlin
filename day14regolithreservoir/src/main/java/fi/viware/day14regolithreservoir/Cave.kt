@@ -8,17 +8,18 @@ import kotlin.properties.Delegates
  * Then SandGrains are dropped one after each other, until a leak takes place.
  * Don't know if a stuck condition might happen.
  */
-class Cave(val pathLines:List<String>) {
+open class Cave(val pathLines:List<String>) {
 
     val rockPoints = mutableListOf<Point>()
     val sandPoints = mutableListOf<Point>()
     val occupiedPoints = mutableListOf<Point>()
-    var leaking = false
+    var leaking = false // For puzz1
     var paths = mutableListOf<Path>()
     var minX by Delegates.notNull<Int>()
     var maxX by Delegates.notNull<Int>()
     var minY by Delegates.notNull<Int>()
     var maxY by Delegates.notNull<Int>()
+    var atRest: Boolean = false // For puzz2
 
     init {
         generatePaths()
@@ -79,15 +80,20 @@ class Cave(val pathLines:List<String>) {
         }
     }
 
-
-    fun fill() {
+    /**
+     * Fills the gave with sandgrains using rules of puzzle1.
+     */
+    open fun fill() {
         while (!leaking) {
             leaking = drop(SandGrain(Point(500,0)))
         }
     }
 
-    fun drop(sandGrain: SandGrain): Boolean{
-        var stuck = false
+    /**
+     * Drops one sandgrain per rules of puzzle1
+     */
+    open fun drop(sandGrain: SandGrain): Boolean{
+        var stuck = false // Nowhere to go any more
         while (!(leaking or stuck)) {
             if ((sandGrain.point.x < minX) or (sandGrain.point.x > maxX)) {
                 leaking = true; return true
@@ -113,7 +119,10 @@ class Cave(val pathLines:List<String>) {
         return false
     }
 
-    fun isFree(point: Point): Boolean {
+    /**
+     * Checks if point is not occupied per rules of puzzle1
+     */
+    open fun isFree(point: Point): Boolean {
         occupiedPoints.forEach {p ->
             if (p.equals(point)) return false
         }
