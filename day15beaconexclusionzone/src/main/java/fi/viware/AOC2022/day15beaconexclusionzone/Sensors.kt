@@ -23,19 +23,9 @@ class Sensors(val sensorDataLines: List<String>) {
      */
     fun parseSensorDataLines(){
         sensorDataLines.forEach {
-            //Sensor at x=2, y=18: closest beacon is at x=-2, y=15
-            //Sensor at x=9, y=16: closest beacon is at x=10: closest beacon is at x=16
-
-            val (sx, sy, bx, by) =
-                it.replace("Sensor at x=", "")
-                    .replace(", y=",",")
-                    .replace(": closest beacon is at x=",",")
-                    .replace(", y=",",")
-                    .split(",")
-
-            val sensorToAdd = Sensor(Point(sx.toInt(),sy.toInt()),Point(bx.toInt(), by.toInt()))
+            val sensorToAdd = SensorDataLine(it).toSensor()
             sensors.add(sensorToAdd)
-            noBeacons = noBeacons.union(noBeaconsPoints(sensorToAdd)).toMutableList()
+            noBeacons = noBeacons.union(noBeaconPoints(sensorToAdd)).toMutableList()
         }
     }
 
@@ -44,7 +34,7 @@ class Sensors(val sensorDataLines: List<String>) {
      * closer to it that than it's nearestBeacon.
      * Including sensor's and beacon's points themselves.
      */
-    fun noBeaconsPoints(sensor: Sensor):List<Point>{
+    fun noBeaconPoints(sensor: Sensor): List<Point> {
         var noBeaconPoints = mutableListOf<Point>(sensor.pointSensor, sensor.pointBeacon)
         val manhattanDistance =
             sensor.pointSensor.manhattanDistance(sensor.pointBeacon)
