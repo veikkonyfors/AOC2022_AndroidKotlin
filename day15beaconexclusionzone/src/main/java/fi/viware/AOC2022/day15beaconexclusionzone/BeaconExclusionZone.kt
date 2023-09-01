@@ -33,7 +33,8 @@ class BeaconExclusionZone(val sensorDataLines: List<String>) {
                 printLine(noBeacons, 10)
             }
 
-            noBeacons = noBeacons.distinctBy {p -> p.x.toString() + p.y.toString() }.toMutableList()
+            //noBeacons = noBeacons.distinctBy {p -> p.x.toString() + p.y.toString() }.toMutableList()
+            noBeacons = removeDuplicates(noBeacons)
             if(sensorToAdd.pointSensor.x == 0 && sensorToAdd.pointSensor.y == 11) {
                 println("noBeacons distinct")
                 printLine(noBeacons, 10)
@@ -53,10 +54,13 @@ class BeaconExclusionZone(val sensorDataLines: List<String>) {
     fun removeDuplicates(list: MutableList<Point>): MutableList<Point>{
         val uniqueList = mutableListOf<Point>()
         list.forEach { p->
-            uniqueList.forEach {pu->
-
+            var exists = false
+            uniqueList.forEach { pu ->
+                if (p.equals(pu)) {exists = true; return@forEach}
             }
+            if(! exists) uniqueList.add(p)
         }
+        return uniqueList
     }
     fun printLine(list: MutableList<Point> ,line: Int){
 
