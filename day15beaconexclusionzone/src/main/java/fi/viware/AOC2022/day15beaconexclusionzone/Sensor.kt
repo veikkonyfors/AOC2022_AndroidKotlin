@@ -10,12 +10,16 @@ class Sensor(val pointSensor: Point, val pointBeacon: Point) {
      * closer to it that than it's nearestBeacon.
      * Including sensor itself and nearest beacon.
      */
-    fun noBeaconPoints(sensor: Sensor): List<Point> {
-        var noBeaconPoints = mutableListOf<Point>(sensor.pointSensor, sensor.pointBeacon)
+    fun noBeaconPoints(): List<Point> {
+        var noBeaconPoints = mutableListOf<Point>()
         val manhattanDistance =
-            sensor.pointSensor.manhattanDistance(sensor.pointBeacon)
-        for (i in 1..manhattanDistance) {
-            noBeaconPoints.add(Point(i, manhattanDistance - i))
+            this.pointSensor.manhattanDistance(this.pointBeacon)
+        for (i in -manhattanDistance..manhattanDistance) {
+            for (j in -manhattanDistance..manhattanDistance) {
+                if (pointSensor.manhattanDistance(Point(pointSensor.x + i, pointSensor.y + j)) <= manhattanDistance) {
+                    noBeaconPoints.add(Point(pointSensor.x + i, pointSensor.y + j))
+                }
+            }
         }
         return noBeaconPoints
     }
