@@ -17,7 +17,8 @@ class Sensor(val pointSensor: Point, val pointBeacon: Point) {
         for (i in -manhattanDistance..manhattanDistance) {
             for (j in -manhattanDistance..manhattanDistance) {
                 if (pointSensor.manhattanDistance(Point(pointSensor.x + i, pointSensor.y + j)) <= manhattanDistance) {
-                    noBeaconPoints.add(Point(pointSensor.x + i, pointSensor.y + j))
+                    if(! (pointBeacon.x == pointSensor.x + i && pointBeacon.y == pointSensor.y + j))  // Here it exists
+                        noBeaconPoints.add(Point(pointSensor.x + i, pointSensor.y + j))
                 }
             }
         }

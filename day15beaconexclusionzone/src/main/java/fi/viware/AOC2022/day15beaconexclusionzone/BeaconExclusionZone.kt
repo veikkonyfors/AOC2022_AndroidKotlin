@@ -23,16 +23,54 @@ class BeaconExclusionZone(val sensorDataLines: List<String>) {
         sensorDataLines.forEach {
             val sensorToAdd = SensorDataLine(it).toSensor()
             sensors.add(sensorToAdd)
-            noBeacons = noBeacons.union(sensorToAdd.noBeaconPoints()).toMutableList()
+            val noBeaconsToAdd = sensorToAdd.noBeaconPoints()
+
+            // 1.9.2023, VN: For some reason distictBy below skips one point, (1,10).
+            //noBeacons = noBeacons.union(noBeaconsToAdd).toMutableList().distinctBy { it.x.toString() + it.y.toString() }.toMutableList()
+            noBeacons = noBeacons.union(noBeaconsToAdd).toMutableList()
+            if(sensorToAdd.pointSensor.x == 0 && sensorToAdd.pointSensor.y == 11) {
+                println("noBeacons")
+                printLine(noBeacons, 10)
+            }
+
+            noBeacons = noBeacons.distinctBy {p -> p.x.toString() + p.y.toString() }.toMutableList()
+            if(sensorToAdd.pointSensor.x == 0 && sensorToAdd.pointSensor.y == 11) {
+                println("noBeacons distinct")
+                printLine(noBeacons, 10)
+            }
+        }
+    }
+
+    fun NumNoBeaconPointsOnLine(line: Int):Int{
+        var n:Int = 0
+        noBeacons.forEach {
+            if(it.y == line) { n+=1; println("$it, $n") }
+        }
+
+        return n
+    }
+
+    fun removeDuplicates(list: MutableList<Point>): MutableList<Point>{
+        val uniqueList = mutableListOf<Point>()
+        list.forEach { p->
+            uniqueList.forEach {pu->
+
+            }
+        }
+    }
+    fun printLine(list: MutableList<Point> ,line: Int){
+
+        list.forEach {
+            if(it.y == line) println("${it.toString()}")
         }
     }
 
     /**
-     * Prints out given list of points.
+     * Prints out given list of points as hashtags (#), like it is done in the puzz1 description..
      * Normally noBeacons is the list we are interested in.
      */
     fun printListOfPoints(){
-
+        // To be implemented if required
     }
 
     override fun toString(): String {
