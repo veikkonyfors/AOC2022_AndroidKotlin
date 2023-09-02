@@ -5,6 +5,7 @@ import org.junit.Assert.*
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import java.io.File
 
 class BeaconExclusionZoneTest {
 
@@ -65,5 +66,13 @@ class BeaconExclusionZoneTest {
         println(sensors.noBeacons.toString())
     }
 
+    @Test
+    fun solvePuzz1() {
+        val input = File(".", "input_2")
+        val sensorDataLines = input.readLines()
+
+        val beaconExclusionZone = BeaconExclusionZone(sensorDataLines)
+        println(beaconExclusionZone.NumNoBeaconPointsOnLine(2000000))
+    }
 
 }
