@@ -68,11 +68,11 @@ class BeaconExclusionZoneTest {
 
     @Test
     fun solvePuzz1() {
-        val input = File(".", "input_2")
+        val input = File(".", "input_test")
         val sensorDataLines = input.readLines()
 
         val beaconExclusionZone = BeaconExclusionZone(sensorDataLines)
-        println(beaconExclusionZone.NumNoBeaconPointsOnLine(2000000))
+        println(beaconExclusionZone.NumNoBeaconPointsOnLine(10))
     }
 
 }
