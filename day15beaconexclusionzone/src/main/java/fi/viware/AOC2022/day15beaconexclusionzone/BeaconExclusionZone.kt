@@ -6,7 +6,7 @@ package fi.viware.AOC2022.day15beaconexclusionzone
  * Also keeps track of points where a beacon can' exist, in the form of list noBeacons.
  * Logic is based on each sensors nearest beacon limiting another beacon to exist closer to that sensor.
  */
-class BeaconExclusionZone(val sensorDataLines: List<String>) {
+class BeaconExclusionZone(val sensorDataLines: List<String>, val lineOfInterest:Int) {
 
     var sensors: MutableList<Sensor> = mutableListOf()
     var noBeacons: MutableList<Point> = mutableListOf()
@@ -23,6 +23,14 @@ class BeaconExclusionZone(val sensorDataLines: List<String>) {
         sensorDataLines.forEach {
             val sensorToAdd = SensorDataLine(it).toSensor()
             sensors.add(sensorToAdd)
+
+            // Find out noBeaconPoints only for the line of interest. Not for all lines, as in HEAP full version.
+            val noBeaconsToAdd = sensorToAdd.noBeaconPoints(this.lineOfInterest)
+            noBeacons = noBeacons.union(noBeaconsToAdd).toMutableList()
+            noBeacons = removeDuplicates(noBeacons)
+
+            /*
+            HEAP full version
             val noBeaconsToAdd = sensorToAdd.noBeaconPoints()
 
             // 1.9.2023, VN: For some reason distictBy below skips one point, (1,10).
@@ -38,21 +46,29 @@ class BeaconExclusionZone(val sensorDataLines: List<String>) {
             if(sensorToAdd.pointSensor.x == 0 && sensorToAdd.pointSensor.y == 11) {
                 println("noBeacons distinct")
                 printLine(noBeacons, 10)
-            }
+            }*/
         }
     }
 
     fun NumNoBeaconPointsOnLine(line: Int):Int{
+
+        noBeacons = removeBeaconPoints(noBeacons)
+
         var n:Int = 0
         noBeacons.forEach {
-            if(it.y == line) { n+=1; println("$it, $n") }
+            if(it.y == line) {
+                n+=1; //println("$it, $n")
+            }
         }
 
         return n
     }
 
     fun removeDuplicates(list: MutableList<Point>): MutableList<Point>{
-        val uniqueList = mutableListOf<Point>()
+        var uniqueList = mutableListOf<Point>()
+        uniqueList = list.distinctBy {p -> p.x.toString() + p.y.toString() }.toMutableList()
+
+/*
         list.forEach { p->
             var exists = false
             uniqueList.forEach { pu ->
@@ -60,6 +76,7 @@ class BeaconExclusionZone(val sensorDataLines: List<String>) {
             }
             if(! exists) uniqueList.add(p)
         }
+ */
         return uniqueList
     }
     fun printLine(list: MutableList<Point> ,line: Int){
@@ -67,6 +84,28 @@ class BeaconExclusionZone(val sensorDataLines: List<String>) {
         list.forEach {
             if(it.y == line) println("${it.toString()}")
         }
+    }
+
+    /**
+     * Removes nobeaconpoints where beacon exist one or more sensors.
+     * Even if beacon point for a sensor is not inserted while parsing a singlel sensor,
+     * other sensors with other beacon may have added a nobeaconpoint there.
+     * Needs to be removed before counting NumNoBeaconPointsOnLine.
+     *
+     */
+    fun removeBeaconPoints(list: MutableList<Point>): MutableList<Point>{
+
+        var cutList = mutableListOf<Point>()
+
+        noBeacons.forEach { nb->
+            var exists = false
+            sensors.forEach { s->
+                if(nb.equals(s.pointBeacon)) exists = true
+            }
+            if(! exists) cutList.add(nb)
+        }
+        cutList = removeDuplicates(cutList)
+        return cutList
     }
 
     /**

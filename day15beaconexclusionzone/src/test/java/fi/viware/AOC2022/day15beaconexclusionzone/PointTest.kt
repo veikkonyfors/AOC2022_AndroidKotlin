@@ -11,5 +11,6 @@ class PointTest{
         assertEquals(15,Point(12, 14).manhattanDistance(Point(-2, 15)))
         assertEquals(2,Point(-10, -10).manhattanDistance(Point(-11, -11)))
         assertEquals(3,Point(-10, -10).manhattanDistance(Point(-11, -12)))
+        assertEquals(857429,Point(3972136, 2425195).manhattanDistance(Point(4263070, 2991690)))
     }
 }

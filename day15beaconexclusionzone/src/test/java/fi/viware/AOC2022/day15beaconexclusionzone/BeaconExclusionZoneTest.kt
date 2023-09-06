@@ -23,8 +23,7 @@ class BeaconExclusionZoneTest {
             listOf<String>(
                 "Sensor at x=2, y=18: closest beacon is at x=-2, y=15",
                 "Sensor at x=9, y=16: closest beacon is at x=10, y=16"
-            )
-        )
+            ), 10)
         println(sensors)
         assertEquals(
             "[Sensor((2, 18)), nearest Beacon((-2, 15)), Sensor((9, 16)), nearest Beacon((10, 16))]",
@@ -34,14 +33,17 @@ class BeaconExclusionZoneTest {
 
     @Test
     fun NumNoBeaconPointsOnLine() {
-        var sensors = BeaconExclusionZone(
+        var sensors: BeaconExclusionZone
+
+        sensors = BeaconExclusionZone(
             listOf<String>(
                 "Sensor at x=8, y=7: closest beacon is at x=2, y=10"
-            ))
+            ), 10)
 
         //println(sensors.NumNoBeaconPointsOnLine(10))
         //println(sensors.noBeacons.toString())
         assertEquals(12,sensors.NumNoBeaconPointsOnLine(10))
+
 
         sensors = BeaconExclusionZone(
             listOf<String>(
@@ -59,11 +61,12 @@ class BeaconExclusionZoneTest {
                 "Sensor at x=16, y=7: closest beacon is at x=15, y=3",
                 "Sensor at x=14, y=3: closest beacon is at x=15, y=3",
                 "Sensor at x=20, y=1: closest beacon is at x=15, y=3"
-            )
+            ), 10
         )
 
         println(sensors.NumNoBeaconPointsOnLine(10))
         println(sensors.noBeacons.toString())
+        assertEquals(26,sensors.NumNoBeaconPointsOnLine(10))
     }
 
     @Test
@@ -71,8 +74,9 @@ class BeaconExclusionZoneTest {
         val input = File(".", "input_test")
         val sensorDataLines = input.readLines()
 
-        val beaconExclusionZone = BeaconExclusionZone(sensorDataLines)
-        println(beaconExclusionZone.NumNoBeaconPointsOnLine(10))
+        val beaconExclusionZone = BeaconExclusionZone(sensorDataLines, 10)
+        //println(beaconExclusionZone.NumNoBeaconPointsOnLine(10))
+        assertEquals(26,beaconExclusionZone.NumNoBeaconPointsOnLine(10))
     }
 
 }
