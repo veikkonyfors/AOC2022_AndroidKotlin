@@ -2,7 +2,7 @@ package fi.viware.AOC2022.day15beaconexclusionzone
 
 import java.lang.Math.abs
 
-class Point(val x:Int, val y:Int) {
+data class Point(val x:Int, val y:Int) {
 
     /**
      * Returns manhattan distance between this point and the parameter one.
@@ -11,10 +11,14 @@ class Point(val x:Int, val y:Int) {
         return abs(this.x - anotherPoint.x) + abs(this.y - anotherPoint.y)
     }
 
-    fun equals(point: Point): Boolean{
+    /* Changed to data class, no need for this any more
+
+    override fun equals(other: Any?): Boolean {
         if ( (point.x == x) and (point.y == y)) return true
         return false
     }
+
+     */
 
     override fun toString(): String {
         return "($x, $y)"

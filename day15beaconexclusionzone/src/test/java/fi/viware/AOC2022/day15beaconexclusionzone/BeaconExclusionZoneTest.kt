@@ -40,8 +40,8 @@ class BeaconExclusionZoneTest {
                 "Sensor at x=8, y=7: closest beacon is at x=2, y=10"
             ), 10)
 
-        //println(sensors.NumNoBeaconPointsOnLine(10))
-        //println(sensors.noBeacons.toString())
+        println(sensors.NumNoBeaconPointsOnLine(10))
+        println(sensors.noBeacons.toString())
         assertEquals(12,sensors.NumNoBeaconPointsOnLine(10))
 
 
@@ -71,12 +71,12 @@ class BeaconExclusionZoneTest {
 
     @Test
     fun solvePuzz1() {
-        val input = File(".", "input_test")
+        val input = File(".", "input_2")
         val sensorDataLines = input.readLines()
 
-        val beaconExclusionZone = BeaconExclusionZone(sensorDataLines, 10)
+        val beaconExclusionZone = BeaconExclusionZone(sensorDataLines, 2000000)
         //println(beaconExclusionZone.NumNoBeaconPointsOnLine(10))
-        assertEquals(26,beaconExclusionZone.NumNoBeaconPointsOnLine(10))
+        assertEquals(26,beaconExclusionZone.NumNoBeaconPointsOnLine(2000000))
     }
 
 }

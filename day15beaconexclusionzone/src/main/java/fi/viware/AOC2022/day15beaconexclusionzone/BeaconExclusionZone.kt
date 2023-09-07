@@ -13,6 +13,7 @@ class BeaconExclusionZone(val sensorDataLines: List<String>, val lineOfInterest:
 
     init {
         parseSensorDataLines()
+        generateNoBeaconPoints()
     }
 
     /**
@@ -24,10 +25,14 @@ class BeaconExclusionZone(val sensorDataLines: List<String>, val lineOfInterest:
             val sensorToAdd = SensorDataLine(it).toSensor()
             sensors.add(sensorToAdd)
 
-            // Find out noBeaconPoints only for the line of interest. Not for all lines, as in HEAP full version.
+            /*
+            Still Heap full, even if nobeacons gathered only for line of interest.
+
+            // Find out noBeaconPoints only for the line of interest. Not for all lines, as in original HEAP full version.
             val noBeaconsToAdd = sensorToAdd.noBeaconPoints(this.lineOfInterest)
             noBeacons = noBeacons.union(noBeaconsToAdd).toMutableList()
             noBeacons = removeDuplicates(noBeacons)
+             */
 
             /*
             HEAP full version
@@ -50,9 +55,21 @@ class BeaconExclusionZone(val sensorDataLines: List<String>, val lineOfInterest:
         }
     }
 
+    /**
+     * Generates point where no beacons exist on the line of interest
+     */
+    private fun generateNoBeaconPoints(){
+        sensors.forEach { s->
+            val noBeaconsWithThisSensor = s.addNoBeaconPoints(lineOfInterest, noBeacons)
+            //noBeacons = noBeacons.union(noBeaconsWithThisSensor).toMutableList()
+        }
+        //noBeacons = removeDuplicates(noBeacons)
+        noBeacons = removeBeaconPoints(noBeacons)
+    }
+
     fun NumNoBeaconPointsOnLine(line: Int):Int{
 
-        noBeacons = removeBeaconPoints(noBeacons)
+        //noBeacons = removeBeaconPoints(noBeacons)
 
         var n:Int = 0
         noBeacons.forEach {
@@ -87,11 +104,10 @@ class BeaconExclusionZone(val sensorDataLines: List<String>, val lineOfInterest:
     }
 
     /**
-     * Removes nobeaconpoints where beacon exist one or more sensors.
+     * Removes nobeaconpoints where beacon exist for one or more sensors.
      * Even if beacon point for a sensor is not inserted while parsing a singlel sensor,
      * other sensors with other beacon may have added a nobeaconpoint there.
      * Needs to be removed before counting NumNoBeaconPointsOnLine.
-     *
      */
     fun removeBeaconPoints(list: MutableList<Point>): MutableList<Point>{
 
@@ -104,7 +120,7 @@ class BeaconExclusionZone(val sensorDataLines: List<String>, val lineOfInterest:
             }
             if(! exists) cutList.add(nb)
         }
-        cutList = removeDuplicates(cutList)
+        //cutList = removeDuplicates(cutList)
         return cutList
     }
 
