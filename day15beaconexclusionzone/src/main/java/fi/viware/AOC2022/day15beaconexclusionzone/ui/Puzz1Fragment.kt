@@ -7,25 +7,35 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import fi.viware.AOC2022.day15beaconexclusionzone.R
-import fi.viware.AOC2022.day15beaconexclusionzone.databinding.FragmentFirstBinding
+import fi.viware.AOC2022.day15beaconexclusionzone.databinding.FragmentPuzz1Binding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class Puzz1Fragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentPuzz1Binding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private lateinit var viewModel: Puzz1ViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentPuzz1Binding.inflate(inflater, container, false)
+
+        viewModel = Puzz1ViewModel()
+        context?.let { it1 -> viewModel.setFilesDir(it1.filesDir) }
+
+        val txtSolution = binding.txtSolution
+        viewModel.text.observe(viewLifecycleOwner) {
+            txtSolution.text = it
+        }
         return binding.root
 
     }
@@ -33,8 +43,12 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
+        binding.btnNext.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+
+        binding.btnSolve.setOnClickListener {
+            viewModel.solve()
         }
     }
 

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="fi.viware.AOC2022.day15beaconexclusionzone.ui.FirstFragment"
+        android:name="fi.viware.AOC2022.day15beaconexclusionzone.ui.Puzz1Fragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_puzz1">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
