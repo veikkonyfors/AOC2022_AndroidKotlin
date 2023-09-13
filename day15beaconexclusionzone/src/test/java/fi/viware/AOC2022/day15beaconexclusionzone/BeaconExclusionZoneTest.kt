@@ -79,6 +79,15 @@ class BeaconExclusionZoneTest {
         assertEquals(26,beaconExclusionZone.noBeacons.size)
     }
 
+    @Test
+    fun solvePuzz1() {
+        val input = File(".", "input")
+        val sensorDataLines = input.readLines()
+
+        val beaconExclusionZone = BeaconExclusionZone(sensorDataLines, 2000000)
+        //println(beaconExclusionZone.NumNoBeaconPointsOnLine(10))
+        assertEquals(5112034,beaconExclusionZone.noBeacons.size)
+    }
 
     /**
      * That's not the right answer; your answer is too high. If you're stuck, make sure you're using the full input data;
@@ -100,15 +109,6 @@ class BeaconExclusionZoneTest {
      */
 
 
-    @Test
-    fun solvePuzz1() {
-        val input = File(".", "input")
-        val sensorDataLines = input.readLines()
-
-        val beaconExclusionZone = BeaconExclusionZone(sensorDataLines, 2000000)
-        //println(beaconExclusionZone.NumNoBeaconPointsOnLine(10))
-        assertEquals(5112034,beaconExclusionZone.noBeacons.size)
-    }
 
     /* 8.9.2023
 
