@@ -6,6 +6,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import java.io.File
+import java.math.BigInteger
 
 class BeaconExclusionZone2Test {
 
@@ -77,7 +78,7 @@ class BeaconExclusionZone2Test {
     }
 
     @Test
-    fun availableBeaconPoints_2par_1_sensor() {
+    fun availableBeaconPoints_2par_1line() {
         var sensorDataLines = listOf<String>(
             "Sensor at x=8, y=7: closest beacon is at x=2, y=10"
         )
@@ -93,7 +94,7 @@ class BeaconExclusionZone2Test {
 
     }
     @Test
-    fun availableBeaconPoints_test_input_avlbcns_2parameters() {
+    fun availableBeaconPoints_avlbcns_2parameters_lines_test() {
 
         var sensorDataLines = listOf<String>(
             "Sensor at x=2, y=18: closest beacon is at x=-2, y=15",
@@ -121,7 +122,7 @@ class BeaconExclusionZone2Test {
     }
 
     @Test
-    fun availableBeaconPoints_1line_avlbcns_surroundingpoints_impl() {
+    fun availableBeaconPoints_avlbcns_surroundingpoints_impl_1line() {
 
         var sensorDataLines = listOf<String>(
             "Sensor at x=8, y=7: closest beacon is at x=2, y=10"
@@ -144,7 +145,7 @@ class BeaconExclusionZone2Test {
     }
 
     @Test
-    fun availableBeaconPoints_test_surroundingpoints_impl_input() {
+    fun availableBeaconPoints_test_surroundingpoints_impl_input_test() {
         val input = File(".", "input_test")
         val sensorDataLines = input.readLines()
 
@@ -222,18 +223,44 @@ class BeaconExclusionZone2Test {
         assertEquals("[(3293021, 3230812)]",availableBeaconPoints.toString())
     }
 
-    //@Test
+    @Test
     fun solvePuzz2() {
         val input = File(".", "input")
         val sensorDataLines = input.readLines()
-
-        var beaconExclusionZone = BeaconExclusionZonePuzz2(sensorDataLines)
-
-        var availableBeaconPoints = beaconExclusionZone.availableBeaconPoints(0, 4000000)
-
+        var beaconExclusionZone = BeaconExclusionZonePuzzManhattan(sensorDataLines)
+        var availableBeaconPoints = beaconExclusionZone.availableBeaconPoints_surroundingpoints_manhattandistance_impl(0, 4000000)
         println(availableBeaconPoints.toString())
-        assertEquals("[(14, 11)]",availableBeaconPoints.toString())
-
+        assertEquals(1,availableBeaconPoints.size)
+        val point = availableBeaconPoints.first()
+        val X = point.x.toBigInteger()
+        val Y = point.y.toBigInteger()
+        val solution = X*BigInteger.valueOf(4000000) + Y
+        println("$point, $solution")
+        assertEquals(BigInteger.valueOf(13172087230812),solution)
     }
+
+    /*
+    Bit of history:
+
+    puzz1 makes use of BeaconExclusionZone.
+    initially nobeacons was a full List of points. SLOW and HEAP full
+    Changed it to Set. A bit better, but still SLOW & HEAP
+    Changed noBeacons to only hold lineOfInterest. OK
+
+    Puzz2.
+    Inherited BeaconExclusionZonePuzz2 from BeaconExclusionZone.
+    generateNoBeaconPoints generated a full Set.
+    Had 2 and 3 parameter versions of availableBeaconPoints, latter used manhattandistance instead
+    of noBeacons. No luck with full input.
+    availableBeaconPoints_surroundingpoints_impl and availableBeaconPoints_surroundingpoints_manhattandistance_impl,
+    SLOW with full input.
+
+    Eventually availableBeaconPoints_surroundingpoints_manhattandistance_impl solved full input as well.
+    It goes through each and all surrounding points of each sensor and checks if point isn't covered by
+    any of the sensor's manhattandistance.
+
+    Huh Huh.
+
+     */
 
 }
