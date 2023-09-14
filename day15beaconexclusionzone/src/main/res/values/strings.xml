@@ -3,12 +3,12 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">BeaconExclusionZone Puzz1</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">ToPuzz2</string>
+    <string name="second_fragment_label">BeaconExclusionZone Puzz2</string>
+    <string name="topuzz2">ToPuzz2</string>
     <string name="solve">Solve</string>
-    <string name="previous">Previous</string>
+    <string name="topuzz1">ToPuzz1</string>
 
     <string name="puzz_solution">
-        Puzz1 solution
+        Puzz solution
     </string>
 </resources>

@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="fi.viware.AOC2022.day15beaconexclusionzone.ui.SecondFragment"
+        android:name="fi.viware.AOC2022.day15beaconexclusionzone.ui.Puzz2dFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_puzz2">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

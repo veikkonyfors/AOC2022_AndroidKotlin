@@ -7,34 +7,50 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import fi.viware.AOC2022.day15beaconexclusionzone.R
-import fi.viware.AOC2022.day15beaconexclusionzone.databinding.FragmentSecondBinding
+import fi.viware.AOC2022.day15beaconexclusionzone.databinding.FragmentPuzz2Binding
+
+private const val TAG = "fi.viware.AOC2022.day14regolithreservoir.ui.Puzz2Fragment"
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class Puzz2dFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentPuzz2Binding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    lateinit var viewModel: Puzz2ViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
-        return binding.root
+        _binding = FragmentPuzz2Binding.inflate(inflater, container, false)
 
+        viewModel = Puzz2ViewModel()
+        context?.let { viewModel.setFilesDir(it.filesDir) }
+
+        val txtSolution = binding.txtSolution
+        viewModel.live_text.observe(viewLifecycleOwner) {
+            txtSolution.text = it
+        }
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
+        binding.btnNext.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        }
+
+        binding.btnSolve.setOnClickListener {
+            viewModel.solve()
         }
     }
 
