@@ -17,6 +17,9 @@ open class Sensor(val pointSensor: Point, val pointBeacon: Point) {
      * Heap full took place with original list version of nobeacons. List had tobe changed to set later on anyway.
      * For puzz2 need to implement again a full nobeacons set with all lines, limited to the
      * area of interest though. Hopefully heap will not get full.
+     * Unfortunately java.lang.OutOfMemoryError when run under GUI with full input. Input_test ok.
+     * Noticed it only later with puzz2 GUI, as had only run puzz1 GUI with input_test.
+     * Don't bother to change Puzz1 to surrounding-manhattan strategy any more now.
      */
     fun addNoBeaconPoints(lineofInterest:Int, listNoBeacons: MutableSet<Point>){
         //println("Adding sensor $this")
