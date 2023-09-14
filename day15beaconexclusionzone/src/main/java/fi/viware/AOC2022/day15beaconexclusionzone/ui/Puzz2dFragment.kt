@@ -52,6 +52,11 @@ class Puzz2dFragment : Fragment() {
         binding.btnSolve.setOnClickListener {
             viewModel.solve()
         }
+
+        binding.swtchTest.setOnClickListener {
+            if(binding.swtchTest.isChecked) viewModel.setTest()
+            else viewModel.setProd()
+        }
     }
 
     override fun onDestroyView() {
