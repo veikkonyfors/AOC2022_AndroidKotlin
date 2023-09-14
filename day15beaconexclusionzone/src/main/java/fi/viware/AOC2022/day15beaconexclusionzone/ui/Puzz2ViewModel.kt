@@ -20,10 +20,19 @@ class Puzz2ViewModel: ViewModel() {
     private lateinit var pathLines: List<String>
     lateinit var cave: BeaconExclusionZone
 
+    var dimension = 4000000
+    var inputFileName = "input"
+
     fun solve(){
+
+        // For some reason this doesn't seem to take effect
+        _text.apply {
+            value = "Puzz2 Answer"
+        }
+
         val input = File(
             filesDir,
-            "input"
+            inputFileName
         )
 
         val sensorDataLines = input.readLines()
@@ -31,7 +40,7 @@ class Puzz2ViewModel: ViewModel() {
         val beaconExclusionZone = BeaconExclusionZonePuzzManhattan(sensorDataLines)
 
         val availablePoints =
-            beaconExclusionZone.availableBeaconPoints_surroundingpoints_manhattandistance_impl(0, 4000000)
+            beaconExclusionZone.availableBeaconPoints_surroundingpoints_manhattandistance_impl(0, dimension)
         if (availablePoints.size != 1) {
             _text.apply {value = "Puzz2ViewModel problem: more than one point found!" } // LiveData will be observed in Puzz1Fragment
         } else {
@@ -44,6 +53,21 @@ class Puzz2ViewModel: ViewModel() {
         }
 
 
+    }
+    fun setTest(){
+        dimension = 20
+        inputFileName = "input_test"
+        _text.apply {
+            value = "Puzz2 Answer in Test mode"
+        }
+    }
+
+    fun setProd(){
+        dimension = 4000000
+        inputFileName = "input"
+        _text.apply {
+            value = "Puzz2 Answer in Prod mode"
+        }
     }
     fun setFilesDir(filesDir: File) {
         this.filesDir = filesDir
