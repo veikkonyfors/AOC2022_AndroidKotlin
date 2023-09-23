@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AOC2022_AndroidKotlin">
         <activity
-            android:name=".ProboscideaVolcaniumActivity"
+            android:name=".ui.ProboscideaVolcaniumActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

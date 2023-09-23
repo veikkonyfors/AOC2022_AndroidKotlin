@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ProboscideaVolcanium</string>
+    <string name="answer">Answer</string>
+    <string name="Solve">Solve</string>
+    <string name="test">Test</string>
+    <string name="full">Full input</string>
 </resources>
