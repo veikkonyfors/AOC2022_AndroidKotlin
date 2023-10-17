@@ -2,6 +2,15 @@ package fi.viware.test.day16proboscideavolcanium
 
 import java.util.ArrayDeque
 
+
+/**
+ *  Day 16 solution mimicked from https://github.com/nibarius/aoc/tree/master/src/main/aoc2022.
+ *  Having hard time to understand it all.
+ *
+ *  For that reason, a more individual approach OptimumRouteFinder is composed to gather better understanding.
+ *  So far it only works for puzz1 with test input.
+ *
+ */
 class RouteFinder(val inputLines: List<String>) {
 
     val allValves = mutableSetOf<Valve>()
