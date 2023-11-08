@@ -27,7 +27,7 @@ class JetPattern(val jetPatternString:String) {
         return when (ch) {
             '>' -> 1
             '<' -> -1
-            else -> 0
+            else -> push()
         }
     }
 }

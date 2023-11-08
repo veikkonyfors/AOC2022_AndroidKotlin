@@ -20,8 +20,8 @@ class JetPatternTest {
     }
 
     @Test
-    fun push(){
-        val jetPatternString = ">>><<><>><<<>><>>><<<>>><<<><<<x><>><<>>"
+    fun pushRepeat(){
+        val jetPatternString = ">>><<><>><<<>><>>><<<>>><<<><<<><>><<>>"
         val jetPattern = JetPattern(jetPatternString)
 
         // Repeat it two times to verify repeating works ok
@@ -36,8 +36,20 @@ class JetPatternTest {
                 )
             }
         }
+    }
 
+    @Test
+    fun pushSkip(){
+        val jetPatternString = "> >>x <"
+        val jetPattern = JetPattern(jetPatternString)
 
-        println("Push repeat: ${jetPattern.push()}")
+        var pushes = ""
+
+        repeat(jetPatternString.replace("[^<>]".toRegex(), "").length) {
+            pushes += jetPattern.push()
+        }
+        println(pushes)
+        assertEquals(pushes, "111-1")
+
     }
 }
