@@ -25,8 +25,8 @@ class Formatter(){
 
     fun shapeToStringUsingPileHeigth(shape: MutableList<List<Int>>) : String {
         var s = ""
-        val highestPile = shape.maxByOrNull { it.size }?.size ?: 0
-        for (h in 0..highestPile - 1) {
+        val highestPile = shape.maxByOrNull { it.maxOrNull() ?: 0 }?.maxOrNull() ?: 0
+        for (h in 0..highestPile) {
             s += "|"
             shape.forEach {pile ->
                 if (pile == emptyList<Int>()) s += " "

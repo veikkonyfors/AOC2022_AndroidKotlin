@@ -61,7 +61,8 @@ data class Rock(var shape: MutableList<List<Int>>, var height: Int = 4) {
     }
 
     fun highestPile(): Int{
-        return shape.maxByOrNull { it.size }?.size ?: 0
+        val highestSlotNumber = shape.maxByOrNull { it.maxOrNull() ?: 0 }?.maxOrNull() ?: 0
+        return highestSlotNumber + 1
     }
 
     override fun toString(): String {
