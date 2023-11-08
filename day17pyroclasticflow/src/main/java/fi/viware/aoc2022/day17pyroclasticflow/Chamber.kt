@@ -38,9 +38,9 @@ class Chamber(val jetPatternString:String) {
                 true -> collide = true
                 false -> droppingRock.down()
             }
-            if (round == 4) println("Afterwhile droppingRock:\n$droppingRock\n, chamber:\n$this")
+            if (round == 4) println("Afterwhile droppingRock:\n$droppingRock") //\n, chamber:\n$this")
         }
-        println("adding droppingRock:\n$droppingRock\n, with pushPattern: $pushPattern")
+        println("adding droppingRock:\n$droppingRock\n, with pushPattern: ${pushPattern}, droppingRock.highestPile: ${droppingRock.highestPile()}")
         add(droppingRock)
     }
 
@@ -73,7 +73,8 @@ class Chamber(val jetPatternString:String) {
                 columnPiles[rockPileIndex].add(s + rock.height + highestPile)
             }
         }
-        highestPile += rock.highestPile()
+        //highestPile += rock.highestPile()
+        highestPile = columnPiles.maxByOrNull { it.maxOrNull() ?: 0 }?.maxOrNull() ?: 0
     }
 
     override fun toString(): String {
