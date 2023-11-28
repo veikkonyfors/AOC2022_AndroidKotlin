@@ -23,7 +23,7 @@ class Chamber(val jetPatternString:String) {
         var collide = false
         var pushPattern = ""
 
-        println("Dropped droppingRock:\n$droppingRock\n") // 4. round ><>>><< ><>>><<
+        //println("Dropped droppingRock:\n$droppingRock\n") // 4. round ><>>><< ><>>><<
 
         while (! collide) {
             val d = jetPattern.push()
@@ -38,9 +38,10 @@ class Chamber(val jetPatternString:String) {
                 true -> collide = true
                 false -> droppingRock.down()
             }
-            if (round == 4) println("Afterwhile droppingRock:\n$droppingRock") //\n, chamber:\n$this")
+            //if (round == 16) println("Afterwhile droppingRock:\n$droppingRock, pushPattern $pushPattern") //\n, chamber:\n$this")
         }
-        println("adding droppingRock:\n$droppingRock\n, with pushPattern: ${pushPattern}, droppingRock.highestPile: ${droppingRock.highestPile()}")
+        val netPush = pushPattern.count{ it == '>' } - pushPattern.count{ it == '<' }
+        //println("adding droppingRock:\n$droppingRock\n, with pushPattern: ${pushPattern} , netPush $netPush , droppingRock.highestPile: ${droppingRock.highestPile()}")
         add(droppingRock)
     }
 

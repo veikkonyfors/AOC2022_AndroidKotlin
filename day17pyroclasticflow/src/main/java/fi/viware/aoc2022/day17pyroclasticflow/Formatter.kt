@@ -29,9 +29,9 @@ class Formatter(){
         for (h in 0..highestPile) {
             s += "|"
             shape.forEach {pile ->
-                if (pile == emptyList<Int>()) s += " "
+                if (pile == emptyList<Int>()) s += "."
                 else if(pile.contains(h)) s += "#"
-                else s += " "
+                else s += "."
             }
             s += "|\n"
         }

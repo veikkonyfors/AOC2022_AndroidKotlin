@@ -14,7 +14,7 @@ class Rocks {
     fun dropNext(): Rock{
         currentShape += 1
         return when(currentShape % 5) {
-            0 -> Rock(mutableListOf(emptyList(), listOf(0), listOf(0), listOf(0), listOf(0), emptyList(), emptyList()))
+            0 -> Rock(mutableListOf(emptyList(), emptyList(), listOf(0), listOf(0), listOf(0), listOf(0), emptyList()))
             1 -> Rock(mutableListOf(emptyList(),emptyList(),listOf(1),listOf(0, 1, 2),listOf(1),emptyList(),emptyList()))
             2 -> Rock(mutableListOf(emptyList(),emptyList(),listOf(0),listOf(0),listOf(0, 1, 2),emptyList(),emptyList()))
             3 -> Rock(mutableListOf(emptyList(),emptyList(),listOf(0,1,2,3),emptyList(),emptyList(),emptyList(),emptyList()))
