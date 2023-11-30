@@ -5,6 +5,7 @@ import org.junit.Assert.*
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import java.io.File
 
 class ChamberTest {
 
@@ -38,7 +39,12 @@ class ChamberTest {
 
     @Test
     fun droploop(){
-        val chamber = Chamber(">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>")
+
+        val inputFile = File("input")
+        val pushPattern = inputFile.bufferedReader().readLine()
+
+        //val chamber = Chamber(">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>")
+        val chamber = Chamber(pushPattern)
         val rocks = Rocks()
         var highestPilePrevious = 0
         for (count in 1..2022) {
@@ -47,7 +53,7 @@ class ChamberTest {
                 true -> "lowerOrNot $chamber.highestPile < $highestPilePrevious"
                 false -> ""
             }
-            //println("round $count, chamber.highestPile ${chamber.highestPile}, $lowerOrNot")
+            println("round ${count - 1} height  ${chamber.highestPile}")
             highestPilePrevious = chamber.highestPile
             //println("chamber:\n$chamber")
         }

@@ -41,7 +41,7 @@ class Chamber(val jetPatternString:String) {
             //if (round == 16) println("Afterwhile droppingRock:\n$droppingRock, pushPattern $pushPattern") //\n, chamber:\n$this")
         }
         val netPush = pushPattern.count{ it == '>' } - pushPattern.count{ it == '<' }
-        //println("adding droppingRock:\n$droppingRock\n, with pushPattern: ${pushPattern} , netPush $netPush , droppingRock.highestPile: ${droppingRock.highestPile()}")
+        //println("adding droppingRock  with pushPattern: ${pushPattern} }")
         add(droppingRock)
     }
 
@@ -58,7 +58,7 @@ class Chamber(val jetPatternString:String) {
                     //println("rockPileIndex, chamberSlot, rockSlot, movedRock.height: $rockPileIndex, $chamberSlot, $rockSlot, ${movedRock.height}")
                     // chamber slot reaching rockslot + height of rock + highest pile on the chamber.
                     // Rock is always dropped 4 slots higher than the highest pile in chamber.
-                    if (chamberSlot >= rockSlot + movedRock.height + highestPile) return true
+                    if (chamberSlot == rockSlot + movedRock.height + highestPile) return true
                 }
             }
         }
